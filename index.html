@@ -8,6 +8,23 @@
 <link rel="stylesheet" href="demo/assets/index-CjjXLewe.css">
 <link rel="stylesheet" href="demo/fences.css">
 <link rel="stylesheet" href="case-study.css">
+<link rel="canonical" href="https://abh5227.github.io/chefs-choice/">
+<!-- Visit counts, by GoatCounter. The canonical link makes every visit one page, whatever its
+     query says. The referrer is the ?ref= value when the address carries one, and the page the
+     visitor came from otherwise. GoatCounter skips local addresses and frames, so neither a
+     preview nor the demo's frame is counted. -->
+<script>
+window.goatcounter = {
+  referrer: function () {
+    try {
+      var ref = new URL(location.href).searchParams.get("ref");
+      if (ref) return ref;
+    } catch (e) { /* no URL here */ }
+    return document.referrer;
+  }
+};
+</script>
+<script data-goatcounter="https://datum-evidence.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <!-- Every class this page adds starts with cs-. The app's stylesheet is loaded too, for the logo,
      the drawing and the fonts, and a class the page shares with it takes the app's rules as well:
@@ -25,7 +42,7 @@
       <a href="#results">Results</a>
       <a href="#learned">What I learned</a>
     </nav>
-    <a class="cs-gh" href="https://github.com/abh5227">GitHub</a>
+    <a class="cs-gh" href="https://github.com/abh5227" data-goatcounter-click="link-github" data-goatcounter-title="GitHub, header">GitHub</a>
   </header>
 
   <main>
@@ -76,7 +93,7 @@
     <svg class="clip back" viewBox="0 0 34 86" aria-hidden="true"><g transform="translate(0.5,0.8)" opacity="0.45"><rect x="6" y="5" width="22" height="76" rx="11" fill="none" stroke="#2e2206" stroke-width="2.6" stroke-linejoin="round"></rect><rect x="11" y="22" width="12" height="53" rx="6" fill="none" stroke="#2e2206" stroke-width="2.6" stroke-linejoin="round"></rect></g><g><rect x="6" y="5" width="22" height="76" rx="11" fill="none" stroke="url(#cs-brassA)" stroke-width="2.4" stroke-linejoin="round"></rect><rect x="11" y="22" width="12" height="53" rx="6" fill="none" stroke="url(#cs-brassA)" stroke-width="2.4" stroke-linejoin="round"></rect></g><g transform="translate(-0.5,-0.8)" opacity="0.92"><rect x="6" y="5" width="22" height="76" rx="11" fill="none" stroke="#fffdf2" stroke-width="0.85" stroke-linejoin="round"></rect><rect x="11" y="22" width="12" height="53" rx="6" fill="none" stroke="#fffdf2" stroke-width="0.85" stroke-linejoin="round"></rect></g></svg>
     <div class="edge-contact"></div>
     <figure class="polaroid-wrap"><span class="polaroid">
-      <img class="photo" src="demo/images/cooks/60352161f31048bdb522a16dc170209b.jpg" alt="Lemon Olive Oil Cake" loading="lazy" data-album-open="" role="button" tabindex="0" onerror="this.closest('.recipe-stage').classList.add('no-photo'); this.closest('.dish-photo').remove();">
+      <img class="photo" src="demo/images/cooks/d2f2dcc700d246689d58b6149cd77137.jpg" alt="Lemon Olive Oil Cake" loading="lazy" data-album-open="" role="button" tabindex="0" onerror="this.closest('.recipe-stage').classList.add('no-photo'); this.closest('.dish-photo').remove();">
       
       <span class="strip"></span>
     </span></figure>
@@ -152,14 +169,14 @@
   <section class="cs-inside" id="inside" tabindex="-1" aria-labelledby="inside-h">
     <h2 class="cs-vh" id="inside-h">Inside the app</h2>
     <div class="cs-chips" role="group" aria-label="Features">
-      <button type="button" class="cs-chip" data-go="importer" aria-pressed="false">Importer</button>
-      <button type="button" class="cs-chip" data-go="scaling" aria-pressed="false">Scaling</button>
-      <button type="button" class="cs-chip" data-go="library" aria-pressed="false">Library</button>
-      <button type="button" class="cs-chip" data-go="waits" aria-pressed="false">Plan ahead</button>
-      <button type="button" class="cs-chip" data-go="notes" aria-pressed="false">Notes</button>
-      <button type="button" class="cs-chip" data-go="edits" aria-pressed="false">Your changes</button>
-      <button type="button" class="cs-chip" data-go="cooklog" aria-pressed="false">Cook log</button>
-      <button type="button" class="cs-chip" data-go="photos" aria-pressed="false">Photos</button>
+      <button type="button" class="cs-chip" data-go="importer" aria-pressed="false" data-goatcounter-click="feature-importer" data-goatcounter-title="Importer tab">Importer</button>
+      <button type="button" class="cs-chip" data-go="scaling" aria-pressed="false" data-goatcounter-click="feature-scaling" data-goatcounter-title="Scaling tab">Scaling</button>
+      <button type="button" class="cs-chip" data-go="library" aria-pressed="false" data-goatcounter-click="feature-library" data-goatcounter-title="Library tab">Library</button>
+      <button type="button" class="cs-chip" data-go="waits" aria-pressed="false" data-goatcounter-click="feature-waits" data-goatcounter-title="Plan ahead tab">Plan ahead</button>
+      <button type="button" class="cs-chip" data-go="notes" aria-pressed="false" data-goatcounter-click="feature-notes" data-goatcounter-title="Notes tab">Notes</button>
+      <button type="button" class="cs-chip" data-go="edits" aria-pressed="false" data-goatcounter-click="feature-edits" data-goatcounter-title="Your changes tab">Your changes</button>
+      <button type="button" class="cs-chip" data-go="cooklog" aria-pressed="false" data-goatcounter-click="feature-cooklog" data-goatcounter-title="Cook log tab">Cook log</button>
+      <button type="button" class="cs-chip" data-go="photos" aria-pressed="false" data-goatcounter-click="feature-photos" data-goatcounter-title="Photos tab">Photos</button>
     </div>
     <div class="cs-inside-grid">
       <div class="cs-cap">
@@ -205,7 +222,7 @@
       </div>
       <div class="cs-view">
         <div class="cs-sc cs-aw" data-show="app" hidden>
-          <div class="cs-aw-bar"><span class="cs-aw-chip"><i></i>Chef&rsquo;s Choice</span><span class="cs-aw-note">The real app, sample recipes</span><a class="cs-aw-open" href="demo/index.html" data-open="frame">Open on its own page</a></div>
+          <div class="cs-aw-bar"><span class="cs-aw-chip"><i></i>Chef&rsquo;s Choice</span><span class="cs-aw-note">The real app, sample recipes</span><a class="cs-aw-open" href="demo/index.html" data-open="frame" data-goatcounter-click="open-demo" data-goatcounter-title="Demo on its own page">Open on its own page</a></div>
           <div class="cs-aw-fit" data-cs-app><iframe class="cs-aw-frame" title="Chef's Choice, running on three sample recipes"></iframe></div>
         </div>
         <p class="cs-sc cs-aw-phone" data-show="app" hidden><a href="demo/index.html" data-open="phone">Open the app at this feature</a></p>
@@ -305,9 +322,9 @@
   </main>
 
   <footer class="cs-foot">
-    <p class="cs-frow"><span>Andy Hannah</span><span class="cs-fbar" aria-hidden="true">|</span><span>MS in Data Science, Northeastern University, December 2026</span><span class="cs-fbar" aria-hidden="true">|</span><a href="https://www.linkedin.com/in/andy-hannah/">LinkedIn</a><span class="cs-fbar" aria-hidden="true">|</span><a href="mailto:andyhannah2014@gmail.com">andyhannah2014@gmail.com</a><span class="cs-fbar" aria-hidden="true">|</span><a href="https://github.com/abh5227">GitHub</a></p>
+    <p class="cs-frow"><span>Andy Hannah</span><span class="cs-fbar" aria-hidden="true">|</span><span>MS in Data Science, Northeastern University, December 2026</span><span class="cs-fbar" aria-hidden="true">|</span><a href="https://www.linkedin.com/in/andy-hannah/" data-goatcounter-click="link-linkedin" data-goatcounter-title="LinkedIn, footer">LinkedIn</a><span class="cs-fbar" aria-hidden="true">|</span><a href="mailto:andyhannah2014@gmail.com" data-goatcounter-click="link-email" data-goatcounter-title="Email, footer">andyhannah2014@gmail.com</a><span class="cs-fbar" aria-hidden="true">|</span><a href="https://github.com/abh5227" data-goatcounter-click="link-github" data-goatcounter-title="GitHub, footer">GitHub</a></p>
     <p>The demo above is the app&rsquo;s own front end, built from its source with Vite and unchanged. A script in the page stands in for the server and replays answers the app&rsquo;s own server code gave for the three sample recipes. It keeps the cook log in memory, so a reload clears it. The three recipes and the imported page are originals made for this demo. The photos are stock images, used under their licenses.</p>
-    <p>Built from commit <code>d5caa9c</code> on 25 November 2026. The app&rsquo;s repository is private.</p>
+    <p>Built from commit <code>68e4e1a</code> on 25 November 2026. The app&rsquo;s repository is private. This page counts visits with GoatCounter.</p>
   </footer>
 </div>
 <script id="cs-slugs" type="application/json">["yogurt-marinated-chicken-with-charred-onions","lemon-olive-oil-cake","a-pot-of-black-beans"]</script>

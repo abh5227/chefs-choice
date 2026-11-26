@@ -21,7 +21,7 @@ app's own photo upload, which resized each one and kept no metadata.
 
 ## Built from
 
-Commit `d5caa9c` of the app's repository, which is private, on 25 November 2026.
+Commit `68e4e1a` of the app's repository, which is private, on 25 November 2026.
 
 ## Serving it
 
