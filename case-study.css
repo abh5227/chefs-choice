@@ -1,0 +1,267 @@
+/* The case study's own styles. Every class here starts with cs-, so none of them can pick up a rule
+   from the app's stylesheet, which the page also loads (for the logo, the drawing and the fonts).
+   The page's colors are --cs-* tokens, and the drawing's band redefines them for its dark ground.
+   The app's own markup (the logo, the drawn recipe page and the app frame) keeps the app's own
+   variables and rules. */
+body.cs-page {
+  --cs-text: #2a1c11;
+  --cs-soft: #5c4836;
+  --cs-hand: #7a4718;
+  --cs-accent: #4e4b24;
+  --cs-line: #d9ceb6;
+  --cs-line-soft: var(--rule-soft);
+  --cs-panel: #fbf7ee;
+  --cs-panel-edge: var(--paper-edge);
+  --cs-on-bg: var(--btn-fill);
+  --cs-on-text: var(--card);
+  --cs-chip-edge: var(--border-scaler);
+  --cs-head: 68px;
+  margin: 0;
+  background: #f3ecdd;
+  color: var(--cs-text);
+}
+html, body.cs-page { overflow-x: clip; }
+.cs-page *, .cs-page *::before, .cs-page *::after { box-sizing: border-box; }
+/* The skip link sits off screen until it takes focus. The section it lands on takes focus too,
+   with no ring, since the whole section is the target. */
+.cs-skip { position: absolute; left: 12px; top: -60px; z-index: 10; padding: 10px 14px; border-radius: 8px;
+  background: var(--cs-text); color: var(--card); font: 500 14px/1 var(--font-sans); text-decoration: none; }
+.cs-skip:focus { top: 12px; outline: 2px solid var(--cs-accent); outline-offset: 2px; }
+.cs-inside:focus { outline: none; }
+.cs-vh { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+.cs-top, .cs-hero, .cs-drawing, .cs-inside, .cs-results, .cs-learned, .cs-foot {
+  max-width: 1200px; margin-left: auto; margin-right: auto;
+  padding-left: clamp(16px, 3vw, 40px); padding-right: clamp(16px, 3vw, 40px);
+}
+
+/* The top bar: the name, the section links as one pill group, and GitHub. Above phone width it stays
+   at the top as the page scrolls, on a full-width ground of its own, and the section in view is the
+   filled pill (aria-current, set by case-study.js). --cs-head is its height, which the sections and
+   the sticky caption keep clear of. */
+.cs-page h1, .cs-page h2, .cs-page h3 { text-wrap: balance; }
+.cs-top { position: sticky; top: 0; z-index: 20; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center; gap: 8px 16px; min-height: var(--cs-head); padding-top: 12px; padding-bottom: 12px; font-family: var(--font-sans); }
+.cs-top::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(50% - 50vw); width: 100vw; z-index: -1;
+  background: #f3ecdd; border-bottom: 1px solid var(--cs-line); }
+.cs-name { justify-self: start; font-family: var(--font-title); font-size: 19px; font-weight: 600; color: var(--cs-text); text-decoration: none; }
+.cs-name:focus-visible, .cs-gh:focus-visible { outline: 2px solid var(--cs-accent); outline-offset: 3px; border-radius: 6px; }
+.cs-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px; padding: 3px; border: 1px solid var(--cs-line);
+  border-radius: 999px; background: var(--cs-panel); }
+.cs-links a { display: inline-flex; align-items: center; min-height: 36px; padding: 0 14px; border-radius: 999px; color: var(--cs-soft);
+  text-decoration: none; font-size: 14px; }
+.cs-links a:hover { color: var(--cs-text); background: color-mix(in srgb, var(--cs-text) 7%, transparent); }
+.cs-links a[aria-current="location"] { background: var(--cs-on-bg); color: var(--cs-on-text); }
+.cs-links a:focus-visible { outline: 2px solid var(--cs-accent); outline-offset: 2px; }
+.cs-gh { justify-self: end; display: inline-flex; align-items: center; min-height: 36px; padding: 0 16px; border: 1px solid var(--cs-chip-edge);
+  border-radius: 999px; color: var(--cs-text); font-size: 14px; font-weight: 500; text-decoration: none; }
+.cs-gh:hover { border-color: var(--cs-soft); }
+.cs-drawing, .cs-inside, .cs-results, .cs-learned { scroll-margin-top: calc(var(--cs-head) + 8px); }
+@media (max-width: 760px) {
+  .cs-top { grid-template-columns: minmax(0, 1fr) auto; }
+  .cs-links { grid-column: 1 / -1; grid-row: 2; justify-content: space-between; }
+}
+@media (max-width: 600px) {
+  .cs-top { position: static; }
+  .cs-drawing, .cs-inside, .cs-results, .cs-learned { scroll-margin-top: 8px; }
+  .cs-links a { padding: 0 10px; font-size: 13.5px; }
+}
+
+/* The top: one recipe card, in the order and styles of the app's own .detail-card */
+.cs-hero { text-align: left; padding-top: 36px; padding-bottom: 84px; }
+.cs-hx-sheet { max-width: 860px; margin: 0 auto; background: var(--card); border: 1px solid var(--paper-edge); border-radius: 12px;
+  padding: 52px 64px 44px; box-shadow: 0 1px 2px rgba(40,35,30,.06), 0 30px 60px -30px rgba(40,35,30,.30); }
+.cs-hx-src { margin: 0; font: 600 13px/1.5 var(--font-sans); letter-spacing: .08em; color: var(--green); }
+/* padding-top leaves room for the hat over the C, as the home page's .bh-brand does */
+/* The wordmark is drawn for the eye, and the hidden text beside it names the app once, so a copy of
+   the heading gives the name once. */
+.cs-hx-title [data-cs-app] { user-select: none; -webkit-user-select: none; }
+.cs-hx-title { margin: 0; padding-top: calc(.62em + 10px); font-size: clamp(60px, 7vw, 96px); line-height: 1; letter-spacing: 0; font-weight: 400; }
+.cs-hx-note { margin: 26px 0 0; padding-bottom: 22px; border-bottom: 1px solid var(--rule-soft); font-family: var(--font-serif);
+  font-style: italic; font-size: clamp(21px, 2.1vw, 26px); line-height: 1.35; color: #45331f; }
+.cs-hx-ink { display: block; position: relative; margin-top: 4px; font-family: var(--font-hand); font-style: normal;
+  font-size: clamp(23px, 2.3vw, 29px); line-height: 1.25; color: #7a4718; transform: rotate(-1deg); transform-origin: left center; }
+/* The + and the space after it are ordinary text, so a copy reads "+ and" and the gap is a word
+   space. Above 1020 px case-study.js hangs them in the margin with a negative text-indent of their
+   own measured width, so "and" lines up with the print above. */
+.cs-hx-lede { margin: 22px 0 0; font-family: var(--font-serif); font-size: 18px; line-height: 1.65; color: #3d2c1d; max-width: 40em; }
+.cs-hx-tb { margin-top: 26px; padding-top: 20px; border-top: 2px solid #4a3220; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; }
+.cs-hx-tb-col:first-child { padding-right: 28px; }
+.cs-hx-tb-col + .cs-hx-tb-col { padding-left: 28px; border-left: 1px solid var(--rule); }
+.cs-hx-tb-lead { margin: 0 0 6px; font: 600 16px/1.4 var(--font-serif); color: #2a1c11; }
+.cs-hx-tb ul { list-style: none; margin: 0; padding: 0; }
+.cs-hx-tb li { position: relative; padding-left: 14px; font: 15.5px/1.5 var(--font-serif); color: #4a3826; }
+.cs-hx-tb li + li { margin-top: 5px; }
+.cs-hx-tb li::before { content: "·"; position: absolute; left: 3px; color: #8a7560; }
+.cs-hx-tb b { font-weight: 600; color: #2a1c11; }
+.cs-hx-tb-foot { grid-column: 1 / -1; margin: 18px 0 0; font: italic 14px/1.5 var(--font-serif); color: #6e5842; }
+
+/* The drawing, on a dark band: the cake's real page, scaled, with notes in the two margins */
+.cs-drawing { position: relative; padding-top: 72px; padding-bottom: 56px;
+  --cs-hand: #f0cf8e; --cs-soft: #bfae8e; --cs-accent: #f0cf8e; --cs-chip-edge: #5a4c38; --cs-panel: #3a3024;
+  --cs-text: #f3ead8; --cs-on-bg: #f0cf8e; --cs-on-text: #2a1c11; }
+.cs-drawing::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(50% - 50vw); width: 100vw; z-index: -1;
+  background: radial-gradient(40% 46% at 50% 36%, rgba(255,210,140,.17), transparent 70%), linear-gradient(180deg, #2e2619 0%, #231d14 100%); }
+.cs-wrap { position: relative; z-index: 0; }
+.cs-dr { position: relative; display: grid; grid-template-columns: minmax(0, 210px) minmax(0, 1fr) minmax(0, 210px); gap: 0 30px; }
+.cs-dr-sheet { grid-column: 2; position: relative; margin: 0; overflow: hidden; border-radius: 10px; height: 900px;
+  background: var(--paper); box-shadow: 0 50px 90px -40px rgba(0,0,0,.85), 0 18px 40px -20px rgba(0,0,0,.6); }
+.cs-dr-art { width: 960px; transform-origin: 0 0; pointer-events: none; user-select: none; }
+.cs-dr-fade { position: absolute; left: 0; right: 0; bottom: 0; height: 90px; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(239,232,214,0), var(--paper) 85%); }
+.cs-dr-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+/* Each line is drawn twice: a dark edge, then the gold over it. Over the band the gold carries the
+   line (6.4:1 to 11.2:1), and over the cream sheet the dark edge does (13.5:1 to 15.3:1), where the
+   gold alone is 1.2:1. The end dot is gold with the same dark ring. */
+.cs-dr-lines path { fill: none; stroke-linecap: round; }
+.cs-dr-lines .cs-edge { stroke: #2a1c11; stroke-width: 4; }
+.cs-dr-lines .cs-gold { stroke: var(--cs-hand); stroke-width: 1.6; }
+.cs-dr-lines circle { fill: var(--cs-hand); stroke: #2a1c11; stroke-width: 1.5; }
+.cs-dr-lines .cs-on .cs-edge { stroke-width: 5; }
+.cs-dr-lines .cs-on .cs-gold { stroke-width: 2.4; }
+.cs-callout { position: absolute; top: 0; width: 210px; margin: 0; padding: 4px 6px; border: 0; border-radius: 8px;
+  background: none; cursor: pointer; color: var(--cs-hand); font-family: var(--font-hand); font-size: 19px;
+  line-height: 1.25; text-align: right; visibility: hidden; }
+.cs-callout.cs-side-r { text-align: left; }
+.cs-callout.cs-placed { visibility: visible; }
+.cs-callout-k { display: block; font: 600 11px/1.6 var(--font-sans); letter-spacing: .08em; text-transform: uppercase; color: #bfae8e; }
+.cs-callout:hover, .cs-callout[aria-pressed="true"] { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.cs-callout[aria-pressed="true"] .cs-callout-k { color: var(--cs-hand); }
+.cs-callout:focus-visible, .cs-chip:focus-visible { outline: 2px solid var(--cs-accent); outline-offset: 3px; }
+/* Below 1080 px the margins are too narrow for the notes. The drawing stays as a picture, and the
+   feature buttons above the panel are the menu, as they are at every width. */
+@media (max-width: 1080px) {
+  .cs-dr { display: block; }
+  .cs-dr-lines, .cs-callout { display: none; }
+}
+
+/* Inside: the eight feature buttons, then a caption beside the app, back on paper */
+.cs-inside { padding-top: 72px; padding-bottom: 72px; }
+.cs-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 32px; }
+.cs-chip { display: inline-flex; align-items: center; min-height: 44px; padding: 0 15px; border: 1px solid var(--cs-chip-edge);
+  border-radius: 22px; background: var(--cs-panel); color: var(--cs-text); font: 500 14px/1 var(--font-sans); cursor: pointer; }
+.cs-chip:hover { border-color: var(--cs-soft); }
+.cs-chip[aria-pressed="true"] { background: var(--cs-on-bg); border-color: var(--cs-on-bg); color: var(--cs-on-text); }
+/* Below 1080 px the chip row is the menu. Eight chips in rows of four, or of two on a phone, so none
+   is left alone on a line. This comes after the base rules above, which it overrides. */
+@media (max-width: 1080px) {
+  .cs-chips { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .cs-chip { justify-content: center; padding: 0 10px; text-align: center; line-height: 1.2; }
+}
+.cs-inside-grid { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 36px; align-items: start; }
+/* The caption stays in view beside the panel as the panel scrolls, below the sticky top bar. Below
+   860 px it is static, so a phone scrolls caption and panel as one column. */
+.cs-cap { position: sticky; top: calc(var(--cs-head) + 16px); }
+.cs-cap .cs-try { margin: 16px 0 0; padding-top: 12px; border-top: 1px solid var(--cs-line); font-size: 16px; }
+.cs-try-k { display: block; margin-bottom: 2px; font: 600 11.5px/1.6 var(--font-sans); letter-spacing: .08em; text-transform: uppercase; color: var(--cs-accent); }
+.cs-try a { color: inherit; }
+.cs-sc[hidden] { display: none !important; }
+.cs-cap h3:focus { outline: none; }
+.cs-cap h3:focus-visible { outline: 2px solid var(--cs-accent); outline-offset: 4px; border-radius: 4px; }
+.cs-cap h3 { margin: 10px 0 12px; font-family: var(--font-title); font-weight: 600; font-size: 32px; line-height: 1.2; letter-spacing: -.01em; color: var(--cs-text); }
+.cs-cap p { margin: 0 0 12px; font-family: var(--font-serif); font-size: 17px; line-height: 1.6; color: var(--cs-text); text-wrap: pretty; }
+.cs-view { min-width: 0; }
+.cs-aw { background: var(--cs-panel); border: 1px solid var(--cs-panel-edge); border-radius: 12px; overflow: hidden;
+  box-shadow: 0 30px 60px -30px rgba(40,35,30,.35); }
+.cs-aw-bar { display: flex; align-items: center; gap: 12px; height: 42px; padding: 0 14px; border-bottom: 1px solid var(--cs-panel-edge);
+  font: 12.5px/1 var(--font-sans); color: var(--cs-soft); }
+.cs-aw-chip { display: inline-flex; align-items: center; gap: 7px; height: 26px; padding: 0 10px; border: 1px solid var(--cs-panel-edge); border-radius: 7px; }
+.cs-aw-chip i { width: 7px; height: 7px; border-radius: 50%; background: var(--cs-accent); }
+.cs-aw-open { margin-left: auto; margin-right: -8px; display: inline-flex; align-items: center; min-height: 32px; padding: 0 8px;
+  border-radius: 6px; color: var(--cs-accent); }
+.cs-aw-open:focus-visible { outline: 2px solid var(--cs-accent); outline-offset: 2px; }
+.cs-aw-fit { height: 680px; overflow: hidden; }
+.cs-aw-frame { display: block; width: 100%; height: 680px; border: 0; background: var(--paper); transform-origin: 0 0; }
+.cs-aw-phone { display: none; margin: 0; }
+.cs-aw-phone a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 22px;
+  background: var(--cs-on-bg); color: var(--cs-on-text); font: 500 15px/1 var(--font-sans); text-decoration: none; }
+.cs-aw-phone a:focus-visible { outline: 2px solid var(--cs-accent); outline-offset: 3px; }
+.cs-panel { background: var(--cs-panel); border: 1px solid var(--cs-panel-edge); border-radius: 12px; padding: clamp(18px, 3vw, 28px);
+  font-family: var(--font-serif); font-size: 16px; line-height: 1.6; color: var(--cs-text); }
+.cs-panel > p { margin: 0 0 16px; max-width: 60ch; }
+.cs-panel > p:last-child { margin-bottom: 0; }
+.cs-imp-scroll { overflow-x: auto; }
+
+/* The import, before and after */
+.cs-imp { width: 100%; border-collapse: collapse; font-size: 15px; margin: 0 0 18px; }
+.cs-imp th { font: 600 12.5px/1.4 var(--font-sans); text-align: left; color: var(--cs-soft); letter-spacing: .04em;
+  padding: 0 12px 6px 0; border-bottom: 1px solid var(--cs-line); }
+.cs-imp td { vertical-align: top; padding: 7px 12px 7px 0; border-bottom: 1px solid var(--cs-line-soft); overflow-wrap: anywhere; }
+.cs-imp td.cs-imp-in { font-family: var(--font-mono); color: var(--cs-soft); width: 46%; }
+.cs-imp .cs-imp-amt { font-variant-numeric: tabular-nums; }
+.cs-imp .cs-imp-note, .cs-imp .cs-imp-second { color: var(--cs-soft); }
+.cs-imp .cs-imp-note { font-style: italic; }
+.cs-imp .cs-imp-heading td { font-weight: 600; text-transform: uppercase; letter-spacing: .08em; font-size: 12.5px; }
+.cs-imp .cs-imp-flagged td.cs-imp-out { box-shadow: inset 3px 0 0 var(--cs-hand); padding-left: 10px; }
+.cs-imp-flags { margin: 0; padding-left: 1.2em; font-size: 15px; }
+.cs-imp-flags li { margin: 0 0 8px; }
+.cs-imp-flags code { font: 12.5px/1.4 var(--font-sans); color: var(--cs-soft); }
+.cs-imp-flags q { font-style: italic; }
+
+/* Results: one card, the library's, at the section's full width. Its chart is static SVG drawn by
+   build.mjs at 560 px, and the words sit in a column beside it. Below 1040 px the words go under
+   the chart, and the chart scales down to fit a narrow card. */
+.cs-results { padding-top: 64px; padding-bottom: 20px; }
+.cs-results h2, .cs-learned h2 { margin: 0 0 28px; font: 600 clamp(28px, 3vw, 36px)/1.15 var(--font-title); color: var(--cs-text); }
+.cs-rs { display: block; }
+.cs-rc { display: grid; grid-template-columns: minmax(0, 560px) minmax(0, 1fr); column-gap: 44px; align-items: start;
+  background: var(--card); border: 1px solid var(--paper-edge); border-radius: 12px; padding: 24px 26px 20px;
+  box-shadow: 0 1px 2px rgba(40,35,30,.06); min-width: 0; }
+.cs-rc > .cs-rc-k, .cs-rc > h3 { grid-column: 1 / -1; }
+.cs-rc-text { min-width: 0; }
+.cs-rc-text > :first-child { margin-top: 0; }
+.cs-rc-k { margin: 0 0 6px; font: 500 13px/1.4 var(--font-sans); color: #8a7560; }
+.cs-rc h3 { margin: 0 0 16px; font: 600 21px/1.3 var(--font-title); color: var(--cs-text); }
+.cs-rc-chart svg { display: block; max-width: 100%; height: auto; margin: 0 0 14px; }
+.cs-rc-chart text { font-family: var(--font-sans); }
+.cs-rc-body { margin: 0 0 10px; font: 16px/1.55 var(--font-serif); color: #4a3826; text-wrap: pretty; }
+.cs-rc-note { margin: 10px 0 0; font: italic 14px/1.5 var(--font-serif); color: #6e5842; text-wrap: pretty; }
+.cs-rc-src { margin: 12px 0 0; padding-top: 10px; border-top: 1px solid var(--rule-soft); font: 12.5px/1.55 var(--font-sans); color: #6e5842; }
+.cs-rc code { font-size: .92em; }
+@media (max-width: 1040px) {
+  .cs-rc { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* What I learned */
+.cs-learned { padding-top: 64px; padding-bottom: 44px; }
+.cs-ls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 40px; }
+.cs-ls p { margin: 0; font-family: var(--font-serif); font-size: 16.5px; line-height: 1.55; color: #3d2c1d; text-wrap: pretty; }
+.cs-ls h3 { margin: 0 0 6px; font-family: var(--font-title); font-weight: 600; font-size: 20px; line-height: 1.3; color: #2a1c11; }
+.cs-fig { font-family: var(--font-hand); font-size: 1.35em; color: #7a4718; margin-right: .18em; }
+.cs-role { max-width: 46em; margin: 36px 0 0; font-family: var(--font-serif); font-size: 17px; line-height: 1.6; color: var(--cs-text); }
+
+.cs-foot { padding-top: 22px; padding-bottom: 48px; border-top: 1px solid var(--cs-line); font: 13px/1.6 var(--font-sans); color: var(--cs-soft); }
+.cs-foot p { margin: 0 0 6px; max-width: 62em; }
+.cs-foot .cs-frow { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; max-width: none; margin-bottom: 14px;
+  font-size: 14px; color: var(--cs-text); }
+.cs-frow a { color: var(--cs-text); }
+.cs-frow a:focus-visible { outline: 2px solid var(--cs-accent); outline-offset: 2px; }
+.cs-fbar { color: var(--cs-line); }
+/* On a phone the row's items stack, one per line, and the bars between them go. They are hidden from
+   screen readers at every width. */
+@media (max-width: 600px) {
+  .cs-foot .cs-frow { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .cs-fbar { display: none; }
+}
+.cs-hx-tb-stack { margin: 12px 0 0; font: 15px/1.55 var(--font-serif); color: #4a3826; text-wrap: pretty; }
+.cs-foot code { font-size: 12px; }
+
+@media (max-width: 860px) {
+  .cs-inside-grid { grid-template-columns: minmax(0, 1fr); }
+  .cs-cap { position: static; }
+  .cs-ls { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 720px) { .cs-hx-sheet { padding: 32px 24px 28px; border-radius: 10px; } }
+@media (max-width: 600px) {
+  .cs-chips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cs-aw { display: none !important; }
+  .cs-aw-phone:not([hidden]) { display: block; }
+  .cs-imp td.cs-imp-in { width: auto; }
+}
+@media (max-width: 480px) {
+  .cs-hx-ink { transform: none; }
+  .cs-hx-tb { grid-template-columns: minmax(0, 1fr); }
+  .cs-hx-tb-col:first-child { padding-right: 0; padding-bottom: 14px; }
+  .cs-hx-tb-col + .cs-hx-tb-col { padding-left: 0; border-left: 0; padding-top: 14px; border-top: 1px solid var(--rule); }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

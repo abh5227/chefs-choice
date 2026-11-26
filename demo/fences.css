@@ -1,0 +1,38 @@
+/* The demo's fences. The app's own front end runs unchanged, and these rules hide the controls that
+   lead somewhere the recorded answers cannot support: a sign-out that strands the visitor at a
+   login form, a copy the stub refuses, the importers, the new-recipe form, the feed, and the photo
+   pickers after a cook. Two hints go as well, since each names a control the demo hides, and so
+   does the past cook's note, which the app does not show yet. Home, the recipe cards, the sort and "← All recipes" stay.
+   tests/dom/portfolio.test.js tours the built demo and fails if any of these shows. */
+
+/* The signed-in name and Sign out, on the home page's nav */
+.site-user,
+/* Copy and Copy as test, which a visitor sees under every recipe they do not own */
+.owner-actions,
+/* Import from URL, Import a saved page, and its hidden file input */
+.bh-nav [data-import-url],
+.bh-nav [data-import-file],
+.bh-nav .import-page-input,
+/* + New recipe */
+.bh-nav .new-recipe,
+/* What's cooking?, the feed */
+.bh-nav a[href="#/feed"],
+/* The "Cooked, add photos" offer that follows Cooked it */
+.cook-followon,
+/* The photo picker in Log a past cook */
+.backdate-modal .bd-right,
+/* Log a past cook's "Upload a past cook..." line, which offers the photo picker hidden above */
+.backdate-modal .bd-hint,
+/* The album's hint, which names the ⋮ menu a visitor does not have */
+.album-overlay [data-ao-hint],
+/* Log a past cook's note. The app saves it and, for now, shows it nowhere (static/app.js keeps a
+   cook's own list for the cook journal), so a visitor would type into a field with no result. */
+.backdate-modal [data-bd-caption] {
+  display: none !important;
+}
+/* With the photo column gone, the box takes the one-column layout the app already uses at phone
+   width (styles.css, .bd-cols under its narrow media query), so no empty column is left beside the
+   calendar. */
+.backdate-modal .bd-cols {
+  grid-template-columns: 1fr;
+}

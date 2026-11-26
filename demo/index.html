@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chef's Choice — Field Notes</title>
+<!-- Spectral = the single text serif (Option C: one voice — title, body, names, and the ledger's
+     tabular figures + labels, kept distinct by treatment, not a second font). Caveat (the Round-2
+     handwritten layer) is deliberately NOT loaded yet — its token is reserved in CSS.
+     ⚠️ SPECTRAL IS SELF-HOSTED (16 Nov). Its four faces are declared in styles.css from
+     static/fonts/, and static/fonts/SOURCES.md records where each file came from. The page asks
+     nothing of Google, so the content voice holds offline and no visitor's address goes there. -->
+  <script src="./recorded.js"></script>
+  <script src="./stub.js"></script>
+  <script type="module" crossorigin src="./assets/index-_IoXsAGa.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CjjXLewe.css">
+  <link rel="stylesheet" href="./fences.css">
+</head>
+<body>
+
+  <!-- Auth gate (auth-4): the login/signup split-spread. Shown when GET /api/me is {user:null};
+       hidden once authenticated (then #app renders the real app). Filled/wired by app.js. -->
+  <div id="auth-gate" hidden></div>
+
+  <!-- Everything is rendered into here by app.js -->
+  <div class="page" id="app">
+    <div class="notice"><p>Loading…</p></div>
+  </div>
+
+  <!-- Reference drawer (filled in on click) -->
+  <div class="scrim" hidden></div>
+  <aside class="panel" role="dialog" aria-modal="true" aria-labelledby="panel-name" hidden>
+    <button class="panel-close" aria-label="Close">&times;</button>
+    <p class="panel-kicker">Field guide</p>
+    <h2 class="panel-name" id="panel-name"></h2>
+    <p class="panel-desc"></p>
+
+    <!-- Each block carries its own class so openPanel can hide it when it has nothing to show.
+         used-block already did; the other three had no hook, which is why they rendered a heading
+         over nothing. See static/panel-blocks.js for the one rule all four now follow. -->
+    <div class="panel-block season-block">
+      <h3>When it's in season</h3>
+      <div class="season-host"></div>
+    </div>
+
+    <div class="panel-block regions-block">
+      <h3>Where it grows</h3>
+      <div class="tags regions"></div>
+    </div>
+
+    <div class="panel-block pairs-block">
+      <h3>Pairs well with</h3>
+      <p class="pairs"></p>
+    </div>
+
+    <div class="panel-block used-block">
+      <h3>In your recipes</h3>
+      <ul class="used-list"></ul>
+    </div>
+  </aside>
+
+  <!-- The photo album overlay (items 6 + 7). Centered on the shared .scrim, the backdate-modal
+       pattern. The grid inside is rendered by app.js from view.data.photos and reuses albumPhotoHTML
+       verbatim, so the ★ Hero badge and the per-photo ⋮ menu are the SAME components the inline
+       Album section uses — not a second implementation that can drift from it. -->
+  <div class="album-overlay" role="dialog" aria-modal="true" aria-labelledby="ao-title" hidden>
+    <button class="panel-close" data-album-close aria-label="Close">&times;</button>
+    <h2 class="ao-title" id="ao-title">Photos</h2>
+    <p class="ao-hint" data-ao-hint></p>
+    <div class="ao-grid" data-ao-grid></div>
+    <div class="ao-actions">
+      <button class="btn alt" data-ao-add>Add photo</button>
+      <span class="ao-status" data-ao-status aria-live="polite"></span>
+    </div>
+    <input class="ao-input" type="file" accept="image/*" multiple tabindex="-1" aria-hidden="true">
+  </div>
+
+  <!-- The lightbox (item 7) — the one genuinely new piece. A SECOND layer above the album overlay
+       rather than a replacement for it, so closing the lightbox returns you to the grid you opened
+       it from. It carries its own backdrop (the shared .scrim is already spent on the overlay). -->
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Photo" hidden>
+    <button class="lb-x" data-lb-close aria-label="Close photo">&times;</button>
+    <button class="lb-nav prev" data-lb-prev aria-label="Previous photo">&#8249;</button>
+    <figure class="lb-figure">
+      <img class="lb-img" data-lb-img alt="">
+      <figcaption class="lb-meta">
+        <span class="lb-where" data-lb-where></span>
+        <span class="lb-count" data-lb-count></span>
+        <button class="btn sm" data-lb-hero>&#9733; Set as hero</button>
+      </figcaption>
+    </figure>
+    <button class="lb-nav next" data-lb-next aria-label="Next photo">&#8250;</button>
+  </div>
+
+  <!-- Backdate-a-cook modal (centered on the shared .scrim; filled/wired by app.js) -->
+  <div class="backdate-modal" role="dialog" aria-modal="true" aria-labelledby="bd-title" hidden>
+    <button class="panel-close" data-backdate-close aria-label="Close">&times;</button>
+    <h2 class="bd-title" id="bd-title">Log a past cook</h2>
+    <p class="bd-hint">Upload a past cook to help keep track of your progress…</p>
+    <div class="bd-cols">
+      <div class="bd-left">
+        <div class="bd-cal" data-bd-cal></div>
+        <input type="text" class="bd-typed" data-bd-typed placeholder="MM/DD/YYYY"
+               inputmode="numeric" autocomplete="off" aria-label="Cook date (MM/DD/YYYY)">
+      </div>
+      <div class="bd-right">
+        <!-- 3b-ii: the add-a-photo area is a real multi-file pick/drop that STAGES photos client-side
+             (no cook exists until submit); app.js re-renders this box (rest invite <-> thumbnail grid). -->
+        <div class="bd-photo zone" data-bd-photo tabindex="0" role="button" aria-label="Add photos to this cook">
+          <span class="bd-photo-ico">&oplus;</span>
+          <span class="bd-photo-lbl">add a photo</span>
+          <span class="bd-photo-cap">drag or click · optional</span>
+        </div>
+        <input class="bd-photo-input" type="file" accept="image/*" multiple tabindex="-1" aria-hidden="true">
+      </div>
+    </div>
+    <!-- Items 11 + 12: the verdict and the note belong to THIS cooking, so they are captured with it
+         rather than set on the recipe afterwards. Both optional — logging a cook you have no opinion
+         about is the ordinary case. app.js fills .bd-stars with the interactive half-step renderer. -->
+    <div class="bd-verdict">
+      <div class="bd-rate">
+        <span class="bd-lbl">How was it?</span>
+        <div class="rating rating-input" data-bd-stars role="group" aria-label="Rate this cook"></div>
+        <button class="bd-clear" type="button" data-bd-rate-clear hidden>clear</button>
+      </div>
+      <input type="text" class="bd-caption" data-bd-caption maxlength="60"
+             placeholder="a note about this cook (optional)" aria-label="A note about this cook">
+    </div>
+    <div class="bd-actions">
+      <button class="btn alt" data-backdate-log>Log this cook</button>
+      <span class="bd-error" data-bd-error aria-live="polite"></span>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chef's Choice</title>
+<meta name="description" content="Chef's Choice, a recipe app by Andy Hannah, running on three sample recipes, and what building it taught me.">
+<link rel="stylesheet" href="demo/assets/index-CjjXLewe.css">
+<link rel="stylesheet" href="demo/fences.css">
+<link rel="stylesheet" href="case-study.css">
+</head>
+<!-- Every class this page adds starts with cs-. The app's stylesheet is loaded too, for the logo,
+     the drawing and the fonts, and a class the page shares with it takes the app's rules as well:
+     .panel made the Importer view position:fixed, and .tag turned captions into tag pills.
+     tests/dom/portfolio.test.js fails on any class here that the app's stylesheet also styles,
+     outside the subtrees marked data-cs-app, which are the app's own markup. -->
+<body class="cs-page" id="top">
+<a class="cs-skip" href="#inside">Skip to the features</a>
+<div class="cs-wrap">
+  <header class="cs-top">
+    <a class="cs-name" href="#top">Andy Hannah</a>
+    <nav class="cs-links" aria-label="Sections">
+      <a href="#recipe">The recipe</a>
+      <a href="#inside">Inside</a>
+      <a href="#results">Results</a>
+      <a href="#learned">What I learned</a>
+    </nav>
+    <a class="cs-gh" href="https://github.com/abh5227">GitHub</a>
+  </header>
+
+  <main>
+  <section class="cs-hero">
+    <article class="cs-hx-sheet">
+      <p class="cs-hx-src">A personal project, 2026</p>
+      <h1 class="cs-hx-title"><span class="cs-vh">Chef&rsquo;s Choice</span><span data-cs-app aria-hidden="true"><span class="wm" style="color:#7a4718"><span class="ch"><span class="wm-cap" style="color:#4E4B24">C</span><span class="mk" style="bottom:calc(0.952em + -0.046em);left:calc(50% + 0.176em);width:0.917em;transform:translateX(-50%) rotate(-9deg)"><svg viewBox="4 12 56 43" style="width:100%;height:auto;display:block" aria-hidden="true"><path d="M 26.8 19.3 A 11 11 0 1 0 26.8 36.7" fill="none" stroke="#4E4B24" stroke-width="6" stroke-linecap="round"/><path d="M 21.5 30 A 11.5 11.5 0 0 1 42.5 30" fill="none" stroke="#4E4B24" stroke-width="6" stroke-linecap="round"/><path d="M 50.8 19.3 A 11 11 0 1 0 50.8 36.7" fill="none" stroke="#9C4A2E" stroke-width="6" stroke-linecap="round"/><rect x="16" y="42" width="32" height="13" rx="3.5" fill="#4E4B24"/></svg></span></span>hef&rsquo;s <span class="wm-cap" style="color:#9C4A2E">C</span>hoice</span></span></h1>
+      <p class="cs-hx-note"><span class="cs-hx-print">A recipe app that keeps the author&rsquo;s recipe</span>
+        <span class="cs-hx-ink"><span class="cs-hx-plus" aria-hidden="true">+ </span>and writes my changes in the margin.</span></p>
+      <p class="cs-hx-lede">I designed and built Chef&rsquo;s Choice, a recipe app, with Claude Code. It holds my own collection of 301 recipes, most of them imported from another recipe app. Each recipe keeps the author&rsquo;s version, and the app records my edits and cooks on top of it. The app on this page is its real front end, running in your browser on three sample recipes.</p>
+      <div class="cs-hx-tb">
+        <div class="cs-hx-tb-col">
+          <p class="cs-hx-tb-lead">What it holds</p>
+          <ul>
+            <li><b>301</b> recipes from my own collection</li>
+            <li><b>about 10,000</b> ingredients in the library</li>
+            <li>imports from another recipe app&rsquo;s export, a web address, or a saved page</li>
+          </ul>
+        </div>
+        <div class="cs-hx-tb-col">
+          <p class="cs-hx-tb-lead">How it&rsquo;s built</p>
+          <ul>
+            <li><b>6,105</b> Python and <b>793</b> JavaScript tests passing</li>
+            <li><b>64</b> schema migrations</li>
+            <li><b>19</b> written release records</li>
+          </ul>
+          <p class="cs-hx-tb-stack">The server is Flask and SQLAlchemy on SQLite, and Alembic keeps a matching Postgres schema that the tests check. The page is plain JavaScript built with Vite, with Tiptap for editing a recipe&rsquo;s steps. GitHub Actions runs the tests, and SonarQube scans the code.</p>
+        </div>
+        <p class="cs-hx-tb-foot">Recipes counted 24 Nov 2026 and tests 16 Nov 2026. The release records are dated 1 Oct–25 Nov 2026.</p>
+      </div>
+    </article>
+  </section>
+
+  <section class="cs-drawing" id="recipe" aria-labelledby="recipe-h">
+    <h2 class="cs-vh" id="recipe-h">The recipe</h2>
+    <div class="cs-dr" data-cs-drawing>
+      <figure class="cs-dr-sheet" role="img" aria-label="The lemon olive oil cake&rsquo;s page in the app">
+        <div class="cs-dr-art" data-cs-app inert aria-hidden="true"><div class="page recipe-view" style="--cook-count: 0;">
+    <a class="back" href="#/">← All recipes</a>
+    <div class="recipe-stage">
+      <div class="dish-photo polaroid-hero">
+    <svg class="clip-defs" width="0" height="0" aria-hidden="true"><defs>
+    <linearGradient id="cs-brassA" x1="0.08" y1="0" x2="0.92" y2="0.15">
+      <stop offset="0" stop-color="#4a3708"></stop><stop offset=".18" stop-color="#8f6f1e"></stop>
+      <stop offset=".40" stop-color="#f6ebc0"></stop><stop offset=".50" stop-color="#e6cd7d"></stop>
+      <stop offset=".62" stop-color="#b8902f"></stop><stop offset=".82" stop-color="#6f5314"></stop>
+      <stop offset="1" stop-color="#3d2e07"></stop></linearGradient></defs></svg>
+    <svg class="clip back" viewBox="0 0 34 86" aria-hidden="true"><g transform="translate(0.5,0.8)" opacity="0.45"><rect x="6" y="5" width="22" height="76" rx="11" fill="none" stroke="#2e2206" stroke-width="2.6" stroke-linejoin="round"></rect><rect x="11" y="22" width="12" height="53" rx="6" fill="none" stroke="#2e2206" stroke-width="2.6" stroke-linejoin="round"></rect></g><g><rect x="6" y="5" width="22" height="76" rx="11" fill="none" stroke="url(#cs-brassA)" stroke-width="2.4" stroke-linejoin="round"></rect><rect x="11" y="22" width="12" height="53" rx="6" fill="none" stroke="url(#cs-brassA)" stroke-width="2.4" stroke-linejoin="round"></rect></g><g transform="translate(-0.5,-0.8)" opacity="0.92"><rect x="6" y="5" width="22" height="76" rx="11" fill="none" stroke="#fffdf2" stroke-width="0.85" stroke-linejoin="round"></rect><rect x="11" y="22" width="12" height="53" rx="6" fill="none" stroke="#fffdf2" stroke-width="0.85" stroke-linejoin="round"></rect></g></svg>
+    <div class="edge-contact"></div>
+    <figure class="polaroid-wrap"><span class="polaroid">
+      <img class="photo" src="demo/images/cooks/60352161f31048bdb522a16dc170209b.jpg" alt="Lemon Olive Oil Cake" loading="lazy" data-album-open="" role="button" tabindex="0" onerror="this.closest('.recipe-stage').classList.add('no-photo'); this.closest('.dish-photo').remove();">
+      
+      <span class="strip"></span>
+    </span></figure>
+    <svg class="clip front" viewBox="0 0 34 86" aria-hidden="true"><g transform="translate(0.5,0.8)" opacity="0.45"><rect x="6" y="5" width="22" height="76" rx="11" fill="none" stroke="#2e2206" stroke-width="2.6" stroke-linejoin="round"></rect><rect x="11" y="22" width="12" height="53" rx="6" fill="none" stroke="#2e2206" stroke-width="2.6" stroke-linejoin="round"></rect></g><g><rect x="6" y="5" width="22" height="76" rx="11" fill="none" stroke="url(#cs-brassA)" stroke-width="2.4" stroke-linejoin="round"></rect><rect x="11" y="22" width="12" height="53" rx="6" fill="none" stroke="url(#cs-brassA)" stroke-width="2.4" stroke-linejoin="round"></rect></g><g transform="translate(-0.5,-0.8)" opacity="0.92"><rect x="6" y="5" width="22" height="76" rx="11" fill="none" stroke="#fffdf2" stroke-width="0.85" stroke-linejoin="round"></rect><rect x="11" y="22" width="12" height="53" rx="6" fill="none" stroke="#fffdf2" stroke-width="0.85" stroke-linejoin="round"></rect></g></svg>
+    
+  </div>
+      <div class="detail-card">
+        <header class="masthead">
+          <div class="masthead-text"><div class="photo-reserve" aria-hidden="true"></div>
+        <p class="byline">Sample recipe, written for this demo</p>
+        <h1 class="recipe-title">Lemon Olive Oil Cake</h1>
+        <p class="cat-tags"><span class="cat-tag cat-dessert">Cakes</span><span class="cat-tag cat-course">Desserts</span></p>
+        <div class="headnote"><p class="dek">One bowl, no mixer, and it tastes even better on the second day.</p><button class="dek-more" data-dek-toggle="" hidden="">more</button></div></div>
+        </header>
+        
+        <div class="vitals"><div class="stats cook-block" data-rid="lemon-olive-oil-cake">
+    
+    <span class="rate-hint">Log a cook to rate it</span>
+    <span class="cook-actions">
+      <button class="btn" data-cook="">Cooked it</button>
+      <button class="btn alt" data-backdate-open="" title="Log a cook on a past date">Log a past cook</button>
+      
+    </span></div>
+        <div class="owner-actions">
+          <button class="btn ghost sm" data-copy="">Copy</button>
+          <button class="btn ghost sm copy-test" data-copy-test="">Copy as test</button>
+          </div></div>
+        <div class="recipe-cols">
+          <section>
+            <div class="above-ing"><div class="time-block two-col"><div class="meta-stack tb-col"><span class="meta-item"><svg class="meta-ico clk" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="7.5"></circle><path d="M12 9 V13 L15 15"></path><path d="M9.5 3 H14.5"></path></svg><span>Prep&nbsp;<span class="meta-val">15&nbsp;min</span></span></span><span class="meta-item"><span aria-hidden="true"></span><span>Cook&nbsp;<span class="meta-val">40&nbsp;min</span></span></span><span class="meta-item"><span aria-hidden="true"></span><span>Total&nbsp;<span class="meta-val">1&nbsp;hr 55&nbsp;min</span><span class="meta-note"> (incl. plan ahead)</span></span></span><span class="meta-item"><svg class="meta-ico fig" viewBox="0 0 30 24" aria-hidden="true"><circle cx="9" cy="6" r="3"></circle><path d="M4.5 20 a4.5 4.5 0 0 1 9 0"></path><circle cx="21" cy="6" r="3"></circle><path d="M21 9 L17.2 20 H24.8 Z"></path></svg><span>Serves <span class="serves-count meta-val">8</span></span></span></div><div class="meta-stack tb-col tb-right"><span class="meta-item wait"><svg class="meta-ico hg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3 H18"></path><path d="M6 21 H18"></path><path d="M7 3 V6.5 C7 9 12 11 12 12 C12 11 17 9 17 6.5 V3"></path><path d="M7 21 V17.5 C7 15 12 13 12 12 C12 13 17 15 17 17.5 V21"></path></svg><span><span class="meta-lead">Plan&nbsp;ahead</span><ul class="meta-break"><li class="meta-bullet"><span class="meta-do">Wait</span>&nbsp;1&nbsp;hr<span class="meta-sep"> · </span><a class="meta-step" href="#" data-wait-step="7">step 7</a></li></ul></span></span><span class="meta-item wait"><svg class="meta-ico jar" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2.5 H16 V5 H8 Z"></path><path d="M7.5 5 H16.5 A2 2 0 0 1 18.5 7 V19 A2.5 2.5 0 0 1 16 21.5 H8 A2.5 2.5 0 0 1 5.5 19 V7 A2 2 0 0 1 7.5 5 Z"></path><path d="M5.5 10.5 H18.5"></path></svg><span><span class="meta-lead">Keeps</span><ul class="meta-break"><li class="meta-bullet">room temperature, 4&nbsp;days</li></ul></span></span></div></div><div class="scaler-col"><div class="scale-control" role="group" aria-label="Scale quantities"><button data-scale="0.5" class="">½×</button><button data-scale="1" class="on">1×</button><button data-scale="2" class="">2×</button><input class="scale-custom" type="text" inputmode="decimal" placeholder="×" aria-label="Custom multiplier" value=""></div></div></div>
+            <div>
+    <div class="col-head"><h2 class="col-title">Ingredients</h2></div>
+    <ul class="ingredient-list"><li><span class="amount-cell"><span class="qty">1½ cups</span><span class="weight approx">~180 g</span></span><span class="iname">all-purpose flour</span></li><li><span class="amount-cell"><span class="qty">1½ tsp</span></span><span class="iname">baking powder</span></li><li><span class="amount-cell"><span class="qty">½ tsp</span></span><span class="iname">fine salt</span></li><li class="edited"><span class="amount-cell"><span class="qty"><span class="was">1 cup</span><span class="fix">¾ cup</span></span><span class="qty2 was">200 g</span><span class="fix">150 g</span></span><span class="iname">granulated sugar</span></li><li><span class="amount-cell"><span class="qty">1 tbsp</span><span class="qty2">from about 2 lemons</span></span><span class="iname">lemon zest</span></li><li><span class="amount-cell"><span class="qty">3</span></span><span class="iname">large eggs</span></li><li><span class="amount-cell"><span class="qty">¾ cup</span></span><span class="iname"><span class="fix">extra-virgin</span> olive oil</span></li><li><span class="amount-cell"><span class="qty">½ cup</span><span class="weight approx">~114 g</span></span><span class="iname">whole milk</span></li><li><span class="amount-cell"><span class="qty">3 tbsp</span><span class="weight approx">~42 g</span></span><span class="iname">lemon juice</span></li><li class="added"><span class="amount-cell"><span class="qty">1 tsp</span></span><span class="iname">flaky salt<span class="inote">for the top</span></span></li><li class="removed"><span class="amount-cell"><span class="qty"><span class="was">½ tsp</span></span></span><span class="iname"><span class="was">vanilla extract</span></span></li></ul></div>
+          </section>
+          <section>
+            <h2 class="col-title">Method</h2>
+            <ol class="steps"><li class="step"><div class="step-body">Heat the oven to 350°F. Oil a 9-inch round cake pan and line the bottom with parchment.</div></li><li class="step"><div class="step-body">Whisk the flour, baking powder and salt in a bowl.</div></li><li class="step"><div class="step-body">In a large bowl, rub the sugar and lemon zest together with your fingers until it smells of lemon. Whisk in the eggs one at a time, then the olive oil, milk<span class="was">,</span> <span class="fix">and</span> lemon juice <span class="was">and vanilla</span>. <button type="button" class="step-note-marker" aria-expanded="false" aria-controls="cs-note-pop-11" aria-label="a note on this step" data-step-note="11">note</button><span class="step-note-pop" id="cs-note-pop-11" role="dialog" aria-label="a note on this step" hidden=""><span class="step-note-line" data-note="5" data-note-place="pop:11"><span class="note-type">Tip</span><span class="note-words">Rubbing the zest into the sugar releases its oil, and that is where most of the lemon flavor comes from.</span></span></span></div></li><li class="step"><div class="step-body">Fold the dry ingredients into the wet ones until no streaks of flour remain, then pour the batter into the pan.</div></li><li class="step"><div class="step-body">Bake for 40 <span class="was">to 45</span> minutes <span class="fix">in my oven</span>, until a skewer comes out clean.</div></li><li class="step"><div class="step-body"><span class="step-add">Scatter the flaky salt over the top while the cake is still warm.</span></div></li><li class="step"><div class="step-body">Cool in the pan for 15 minutes, then turn it out onto a rack and let it cool completely, about 1 hour.</div></li></ol>
+            
+            <div class="notes"><h3 class="notes-kind">Step notes</h3><div class="notes-group"><p class="notes-para" data-note="5" data-note-place="section"><span class="note-lead"><a class="meta-step note-lead-step" href="#" data-note-step="3">Step 3</a> · Tip: </span><span class="note-words">Rubbing the zest into the sugar releases its oil, and that is where most of the lemon flavor comes from.</span></p></div><h3 class="notes-kind">Storage</h3><div class="notes-group"><p class="notes-para" data-note="6" data-note-place="section"><span class="note-words">Wrapped well, the cake keeps at room temperature for 4 days.</span></p></div><h3 class="notes-kind">Serving</h3><div class="notes-group"><p class="notes-para" data-note="7" data-note-place="section"><span class="note-words">Serve it plain, or with yogurt and a few berries.</span></p></div></div>
+          </section>
+        </div>
+        <section class="album-section">
+    <div class="col-head"><h2 class="col-title">Album</h2></div>
+    <div class="album-grid masonry"><div class="album-col"><figure class="album-photo is-hero" data-photo-id="3"><span class="hero-badge">★ Hero</span>
+    
+    <figcaption class="strip"></figcaption></figure><figure class="album-photo" data-photo-id="7">
+    
+    <figcaption class="strip"></figcaption></figure></div><div class="album-col"><figure class="album-photo" data-photo-id="4">
+    
+    <figcaption class="strip"></figcaption></figure></div><div class="album-col"><figure class="album-photo" data-photo-id="5">
+    
+    <figcaption class="strip"></figcaption></figure></div><div class="album-col"><figure class="album-photo" data-photo-id="6">
+    
+    <figcaption class="strip"></figcaption></figure></div></div>
+    </section>
+      </div>
+    </div>
+    </div></div>
+        <div class="cs-dr-fade" aria-hidden="true"></div>
+      </figure>
+      <svg class="cs-dr-lines" aria-hidden="true"></svg>
+      <button type="button" class="cs-callout" tabindex="-1" aria-hidden="true" data-go="importer" data-target=".byline" aria-pressed="false" aria-controls="inside"><span class="cs-callout-k">Importer</span>where an import names its source</button>
+      <button type="button" class="cs-callout" tabindex="-1" aria-hidden="true" data-go="scaling" data-target=".scale-control" aria-pressed="false" aria-controls="inside"><span class="cs-callout-k">Scaling</span>&frac12;&times;, 2&times;, or any number</button>
+      <button type="button" class="cs-callout" tabindex="-1" aria-hidden="true" data-go="library" data-target=".ingredient-list > li:not(.edited):not(.added):not(.removed)" aria-pressed="false" aria-controls="inside"><span class="cs-callout-k">Library</span>in my own recipes, most lines link to the library</button>
+      <button type="button" class="cs-callout" tabindex="-1" aria-hidden="true" data-go="waits" data-target=".meta-item.wait" aria-pressed="false" aria-controls="inside"><span class="cs-callout-k">Plan ahead</span>waits get entries of their own</button>
+      <button type="button" class="cs-callout" tabindex="-1" aria-hidden="true" data-go="notes" data-target=".step-note-marker" aria-pressed="false" aria-controls="inside"><span class="cs-callout-k">Notes</span>a tip pinned to its step</button>
+      <button type="button" class="cs-callout" tabindex="-1" aria-hidden="true" data-go="edits" data-target=".ingredient-list > li.edited" aria-pressed="false" aria-controls="inside"><span class="cs-callout-k">Your changes</span>a cook&rsquo;s change, inked over the print</button>
+      <button type="button" class="cs-callout" tabindex="-1" aria-hidden="true" data-go="cooklog" data-target=".cook-actions" aria-pressed="false" aria-controls="inside"><span class="cs-callout-k">Cook log</span>log it, rate it, undo it</button>
+      <button type="button" class="cs-callout" tabindex="-1" aria-hidden="true" data-go="photos" data-target=".polaroid-hero .polaroid" aria-pressed="false" aria-controls="inside"><span class="cs-callout-k">Photos</span>the Hero, also marked in its album</button>
+    </div>
+  </section>
+
+  <section class="cs-inside" id="inside" tabindex="-1" aria-labelledby="inside-h">
+    <h2 class="cs-vh" id="inside-h">Inside the app</h2>
+    <div class="cs-chips" role="group" aria-label="Features">
+      <button type="button" class="cs-chip" data-go="importer" aria-pressed="false">Importer</button>
+      <button type="button" class="cs-chip" data-go="scaling" aria-pressed="false">Scaling</button>
+      <button type="button" class="cs-chip" data-go="library" aria-pressed="false">Library</button>
+      <button type="button" class="cs-chip" data-go="waits" aria-pressed="false">Plan ahead</button>
+      <button type="button" class="cs-chip" data-go="notes" aria-pressed="false">Notes</button>
+      <button type="button" class="cs-chip" data-go="edits" aria-pressed="false">Your changes</button>
+      <button type="button" class="cs-chip" data-go="cooklog" aria-pressed="false">Cook log</button>
+      <button type="button" class="cs-chip" data-go="photos" aria-pressed="false">Photos</button>
+    </div>
+    <div class="cs-inside-grid">
+      <div class="cs-cap">
+        <div class="cs-sc" data-show="importer" hidden>
+          <h3 tabindex="-1">An importer that fixes by rule</h3>
+          <p>Recipes come in from another recipe app&rsquo;s export, a web address, or a page saved from a site that blocks importers. Each cleanup is a rule in code, so the same fix reaches every recipe I already have and every one I import next. The app flags any line no rule can decide, so a person checks it and the importer never guesses.</p>
+          <p class="cs-try"><span class="cs-try-k">Try this</span> Pick a line with a bar down its left edge, and find its reason in the list under the table.</p>
+        </div>
+        <div class="cs-sc" data-show="scaling" data-sample="1" data-sel=".scale-control" hidden>
+          <h3 tabindex="-1">Scaling that reads like a cook</h3>
+          <p>Halve the cake and &frac34; cup of oil becomes 6 tbsp, while 1 tbsp of zest becomes 1&frac12; tsp. Eggs, bay leaves, and chicken thighs stay whole. The same rules run in Python on the server and in JavaScript on the page. A test checks that both sides use the same numbers and unit names, so the two never print different amounts.</p>
+          <p class="cs-try"><span class="cs-try-k">Try this</span> Press &frac12;&times; and watch &frac34; cup of oil become 6 tbsp.</p>
+        </div>
+        <div class="cs-sc" data-show="library" hidden>
+          <h3 tabindex="-1">An ingredient library that knows what cooks call things</h3>
+          <p>The app matches recipe lines to a library of about 10,000 ingredients, drawn mostly from Wikidata and Open Food Facts. Nearly 6,000 of them link to a Wikidata entry. The library also knows other names cooks use, so &ldquo;green onion&rdquo; finds scallion, &ldquo;confectioners&rsquo; sugar&rdquo; finds powdered sugar, and &ldquo;gochugaru&rdquo; finds Korean red pepper flakes.</p>
+        </div>
+        <div class="cs-sc" data-show="waits" data-sample="2" data-sel=".time-block" hidden>
+          <h3 tabindex="-1">Waits shown before the first step</h3>
+          <p>The app stores marinating, chilling, rising, and soaking as entries of their own, and each one can link to the step it belongs to. The Total counts the waits that always apply. An optional wait, like the beans&rsquo; overnight soak, gets a second total of its own, so a cook can see what that path costs.</p>
+          <p class="cs-try"><span class="cs-try-k">Try this</span> Compare the Total, 1 hr 40 min, with the line under it, which adds the overnight soak.</p>
+        </div>
+        <div class="cs-sc" data-show="notes" data-sample="0" data-sel=".step-note-marker" hidden>
+          <h3 tabindex="-1">Notes that belong to steps</h3>
+          <p>A note has a type and can belong to a step. It shows as a tag on that step and again under Step notes. A note that mentions &ldquo;step 2&rdquo; links to that step, and the link follows it when a cook reorders the steps.</p>
+          <p class="cs-try"><span class="cs-try-k">Try this</span> Press the NOTE tag on step 5 to open the tip about chicken breasts.</p>
+        </div>
+        <div class="cs-sc" data-show="edits" data-sample="1" data-sel=".ingredient-list li.edited, .ingredient-list li.added, .ingredient-list li.removed" data-all hidden>
+          <h3 tabindex="-1">Your changes, in the margin</h3>
+          <p>Each recipe keeps a saved copy of how it arrived, and the page shows the cook&rsquo;s changes in a handwritten layer over the print. A cook&rsquo;s edits never touch that copy. A repair script updates the recipe and its saved copy in one step, so the marks show only the cook&rsquo;s own edits.</p>
+          <p class="cs-try"><span class="cs-try-k">Try this</span> Find the sugar, where the cook&rsquo;s &frac34; cup is inked over the printed 1 cup.</p>
+        </div>
+        <div class="cs-sc" data-show="cooklog" data-sample="0" data-sel=".cook-block" hidden>
+          <h3 tabindex="-1">A rating belongs to a cook</h3>
+          <p>Cooked it logs today&rsquo;s cook in one tap. Log a past cook takes a date from a calendar and a rating in half stars. The recipe shows the average of the rated cooks, and a cook left unrated does not pull the average down. Undo takes the last cook back off.</p>
+          <p class="cs-try"><span class="cs-try-k">Try this</span> Press Cooked it, rate the cook, then press Undo to take it back off.</p>
+        </div>
+        <div class="cs-sc" data-show="photos" data-sample="1" data-sel=".album-section" hidden>
+          <h3 tabindex="-1">An album for every dish</h3>
+          <p>Every photo of a dish goes in its album, at the foot of the recipe. The album is a mosaic that keeps each photo whole, at its own shape, in the order the cook set. One photo is the Hero, the recipe&rsquo;s cover, which sits at the top as a Polaroid and carries a &#9733; Hero mark in the album.</p>
+          <p class="cs-try"><span class="cs-try-k">Try this</span> Find the &#9733; Hero mark in the album, then click that photo to see it large.</p>
+        </div>
+      </div>
+      <div class="cs-view">
+        <div class="cs-sc cs-aw" data-show="app" hidden>
+          <div class="cs-aw-bar"><span class="cs-aw-chip"><i></i>Chef&rsquo;s Choice</span><span class="cs-aw-note">The real app, sample recipes</span><a class="cs-aw-open" href="demo/index.html" data-open="frame">Open on its own page</a></div>
+          <div class="cs-aw-fit" data-cs-app><iframe class="cs-aw-frame" title="Chef's Choice, running on three sample recipes"></iframe></div>
+        </div>
+        <p class="cs-sc cs-aw-phone" data-show="app" hidden><a href="demo/index.html" data-open="phone">Open the app at this feature</a></p>
+        <div class="cs-sc cs-panel" data-show="importer" hidden>
+          <p>This page was written for this demo and run through the app&rsquo;s saved-page importer, the same code a cook&rsquo;s upload runs. On the left are its ingredient lines as published. On the right is what the app stored.</p>
+          <div class="cs-imp-scroll">
+          <table class="cs-imp">
+      <thead><tr><th scope="col">On the page</th><th scope="col">Stored by the app</th></tr></thead>
+      <tbody>
+        <tr><td class="cs-imp-in">2 Tbsp. olive oil</td><td class="cs-imp-out"><span class="cs-imp-amt">2 Tbsp</span> olive oil</td></tr>
+        <tr class="cs-imp-flagged"><td class="cs-imp-in">1 large onion , diced</td><td class="cs-imp-out"><span class="cs-imp-amt">1 large</span> onion, <span class="cs-imp-note">diced</span></td></tr>
+        <tr><td class="cs-imp-in">3 cloves garlic, minced</td><td class="cs-imp-out"><span class="cs-imp-amt">3 cloves</span> garlic, <span class="cs-imp-note">minced</span></td></tr>
+        <tr class="cs-imp-flagged"><td class="cs-imp-in">1 tsp Smoked Sweet Paprika</td><td class="cs-imp-out"><span class="cs-imp-amt">1 tsp</span> Smoked Sweet Paprika</td></tr>
+        <tr><td class="cs-imp-in">½ tsp. ground cumin</td><td class="cs-imp-out"><span class="cs-imp-amt">½ tsp</span> ground cumin</td></tr>
+        <tr><td class="cs-imp-in">2 (15 oz.) cans chickpeas, drained and rinsed</td><td class="cs-imp-out"><span class="cs-imp-amt">2 cans</span> chickpeas <span class="cs-imp-second">(stored weight: 425 g each)</span>, <span class="cs-imp-note">drained and rinsed</span></td></tr>
+        <tr><td class="cs-imp-in">1 can (14 oz) crushed tomatoes</td><td class="cs-imp-out"><span class="cs-imp-amt">1 can</span> crushed tomatoes <span class="cs-imp-second">(14 oz)</span> <span class="cs-imp-second">(stored weight: 397 g)</span></td></tr>
+        <tr><td class="cs-imp-in">2 cups vegetable broth (or water (plus more as needed))</td><td class="cs-imp-out"><span class="cs-imp-amt">2 cups</span> vegetable broth, <span class="cs-imp-note">or water, plus more as needed</span></td></tr>
+        <tr><td class="cs-imp-in">5 oz baby spinach</td><td class="cs-imp-out"><span class="cs-imp-amt">5 oz</span> baby spinach</td></tr>
+        <tr class="cs-imp-heading"><td class="cs-imp-in"></td><td class="cs-imp-out">OPTIONAL</td></tr>
+        <tr class="cs-imp-flagged"><td class="cs-imp-in">Optional: 1/2 lemon, juiced</td><td class="cs-imp-out">1/2 lemon, <span class="cs-imp-note">juiced</span></td></tr>
+        <tr class="cs-imp-flagged"><td class="cs-imp-in">salt and black pepper , to taste</td><td class="cs-imp-out">salt and black pepper, <span class="cs-imp-note">to taste</span></td></tr>
+      </tbody>
+    </table>
+    <table class="cs-imp">
+      <thead><tr><th scope="col">Method on the page</th><th scope="col">Stored by the app</th></tr></thead>
+      <tbody>
+        <tr><td class="cs-imp-in">Step 1: Heat the oil in a wide pot over medium heat. Add the onion and cook for 6 to 8 minutes, until soft.</td><td class="cs-imp-out">Heat the oil in a wide pot over medium heat. Add the onion and cook for 6 to 8 minutes, until soft.</td></tr>
+        <tr><td class="cs-imp-in">Step 2: Stir in the garlic, paprika and cumin and cook for 1 minute.</td><td class="cs-imp-out">Stir in the garlic, paprika and cumin and cook for 1 minute.</td></tr>
+        <tr><td class="cs-imp-in">Step 3: Add the chickpeas, tomatoes and broth. Simmer for 10 minutes, mashing a few chickpeas against the side of the pot to thicken it.</td><td class="cs-imp-out">Add the chickpeas, tomatoes and broth. Simmer for 10 minutes, mashing a few chickpeas against the side of the pot to thicken it.</td></tr>
+        <tr><td class="cs-imp-in">Step 4: Stir in the spinach a handful at a time until it wilts. Season with salt, pepper and lemon.</td><td class="cs-imp-out">Stir in the spinach a handful at a time until it wilts. Season with salt, pepper and lemon.</td></tr>
+      </tbody>
+    </table>
+    <p>The import left these flags in the review list, each with the reason the app gives, in its own words. A flagged line has a thin bar down the left edge of its stored text.</p>
+    <ul class="cs-imp-flags">
+      <li><strong>onion</strong> <code>cleaned_space_before_comma</code><br><q>removed a space before a comma — publisher artifact</q></li>
+      <li><strong>1/2 lemon</strong> <code>ambiguous_section</code><br><q>no amount and not clearly a section — suggest ingredient</q></li>
+      <li><strong>salt and black pepper</strong> <code>cleaned_space_before_comma</code><br><q>removed a space before a comma — publisher artifact</q></li>
+      <li><strong>salt and black pepper</strong> <code>ambiguous_section</code><br><q>no amount and not clearly a section — suggest ingredient</q></li>
+      <li><strong>1/2 lemon</strong> <code>ingredient_optional_grouped</code><br><q>the line opened &quot;Optional:&quot;, so it was moved under an Optional ingredient heading and the prefix was removed. The word was doing a heading's job on every line instead of once above them</q></li>
+      <li><strong>Smoked Sweet Paprika</strong> <code>ingredient_name_title_cased</code><br><q>the name is title-cased, so which of its later words are names is a question no rule can answer and the name was left exactly as written for a person to decide ('Smoked Sweet Paprika')</q></li>
+    </ul>
+          </div>
+        </div>
+        <div class="cs-sc cs-panel" data-show="library" hidden>
+          <p>There is nothing to open here. The three sample recipes are originals made for this demo, and none of their lines link to the library.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-results" id="results" aria-labelledby="results-h">
+    <h2 id="results-h">Nearly nine in ten lines link to the library</h2>
+    <div class="cs-rs">
+      <article class="cs-rc" data-card="library">
+        <p class="cs-rc-k">How much of the collection links to the library</p>
+        <h3>Of 3,355 ingredient lines, 2,975 link to the library, most of them through Wikidata.</h3>
+        <div class="cs-rc-chart"><svg viewBox="0 0 560 182" width="560" height="182" aria-hidden="true" focusable="false"><defs><pattern id="cs-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#fbf6ea"/><line x1="0" y1="0" x2="0" y2="6" stroke="#4a3220" stroke-width="2.2"/></pattern><pattern id="cs-dots" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="5" height="5" fill="#fbf6ea"/><circle cx="2.5" cy="2.5" r="1.3" fill="#4a3220"/></pattern></defs><rect x="14" y="24" width="325.6697142857143" height="26" fill="#4a3220"/><rect x="340.2697142857143" y="24.6" width="49.81028571428571" height="24.8" fill="url(#cs-hatch)" stroke="#4a3220" stroke-width="1"/><rect x="391.28000000000003" y="24.6" width="60.719999999999956" height="24.8" fill="url(#cs-dots)" stroke="#4a3220" stroke-width="1"/><rect x="453.2" y="24.6" width="54.82285714285716" height="24.8" fill="none" stroke="#4a3220" stroke-width="1.2"/><line x1="508.62285714285713" x2="508.62285714285713" y1="18" y2="56" stroke="#6e5842" stroke-dasharray="2 2"/><text x="508.62285714285713" y="14" text-anchor="end" font-size="11.5" font-weight="400" fill="#6e5842">3,355 lines</text><line x1="14" x2="530" y1="56" y2="56" stroke="#d5cab0"/><line x1="14" x2="14" y1="56" y2="60" stroke="#6e5842"/><text x="14" y="73" text-anchor="middle" font-size="11.5" font-weight="400" fill="#6e5842">0</text><line x1="161.42857142857142" x2="161.42857142857142" y1="56" y2="60" stroke="#6e5842"/><text x="161.42857142857142" y="73" text-anchor="middle" font-size="11.5" font-weight="400" fill="#6e5842">1,000</text><line x1="308.85714285714283" x2="308.85714285714283" y1="56" y2="60" stroke="#6e5842"/><text x="308.85714285714283" y="73" text-anchor="middle" font-size="11.5" font-weight="400" fill="#6e5842">2,000</text><line x1="456.2857142857143" x2="456.2857142857143" y1="56" y2="60" stroke="#6e5842"/><text x="456.2857142857143" y="73" text-anchor="middle" font-size="11.5" font-weight="400" fill="#6e5842">3,000</text><text x="530" y="90" text-anchor="end" font-size="11.5" font-weight="400" fill="#6e5842">ingredient lines</text><rect x="14" y="107" width="13" height="13" fill="#4a3220"/><text x="34" y="118" text-anchor="start" font-size="12.5" font-weight="400" fill="#2a1c11">linked to a Wikidata entry, <tspan font-weight="600">2,209</tspan></text><rect x="14.6" y="127.6" width="11.8" height="11.8" fill="url(#cs-hatch)" stroke="#4a3220" stroke-width="1"/><text x="34" y="138" text-anchor="start" font-size="12.5" font-weight="400" fill="#2a1c11">linked to an Open Food Facts entry, <tspan font-weight="600">346</tspan></text><rect x="14.6" y="147.6" width="11.8" height="11.8" fill="url(#cs-dots)" stroke="#4a3220" stroke-width="1"/><text x="34" y="158" text-anchor="start" font-size="12.5" font-weight="400" fill="#2a1c11">linked to an entry I wrote, <tspan font-weight="600">420</tspan></text><rect x="14.6" y="167.6" width="11.8" height="11.8" fill="none" stroke="#4a3220" stroke-width="1.2"/><text x="34" y="178" text-anchor="start" font-size="12.5" font-weight="400" fill="#2a1c11">not linked, <tspan font-weight="600">380</tspan></text></svg><p class="cs-vh">Of 3,355 ingredient lines, 2,209 link to a Wikidata entry. 346 link to an Open Food Facts entry, and 420 to an entry I wrote. 380 lines are not linked.</p></div>
+        <div class="cs-rc-text">
+          <p class="cs-rc-body">The 2,975 links point to 433 different entries, in a library of 10,023. Each entry comes from Wikidata or Open Food Facts, or is one I wrote and keep in a file of its own.</p>
+          <p class="cs-rc-note">A line is one ingredient row in a recipe, not a heading. An entry&rsquo;s id shows where it came from, a Q number for Wikidata, <code>en:</code> for Open Food Facts, or a plain name for one I wrote.</p>
+          <p class="cs-rc-src">The nightly copy of 24 Nov 2026, 301 recipes, checked against its manifest and opened read-only. Counted 25 Nov 2026.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="cs-learned" id="learned" aria-labelledby="learned-h">
+    <h2 id="learned-h">What I learned</h2>
+    <div class="cs-ls">
+      <div class="cs-l">
+        <h3>Keep the author&rsquo;s recipe and the cook&rsquo;s changes apart.</h3>
+        <p>The app shows a cook&rsquo;s edits by comparing each recipe with a saved copy of how it arrived. That copy is the only record of the author&rsquo;s words, so I treat it as permanent. Notes had to come out of it, so they went first into a table of their own, and none of the author&rsquo;s words were lost.</p>
+      </div>
+      <div class="cs-l">
+        <h3>Declare a data change before making it.</h3>
+        <p>Cleanup scripts in September changed recipes without updating the saved copy, so <span class="cs-fig">27 of 49</span> edit marks showed the scripts&rsquo; work as a cook&rsquo;s. I learned that a mark is only as true as the copy behind it. Now a standing check stops any data change that moves a recipe or its saved copy without declaring it first.</p>
+      </div>
+      <div class="cs-l">
+        <h3>Make a test hold Python and JavaScript equal.</h3>
+        <p>The JavaScript scaler and two Python readers each kept their own list of units, and nothing checked that the lists matched. <span class="cs-fig">205</span> amounts like &ldquo;1kg&rdquo; were read as plain counts, and 77 of them printed the wrong figure when scaled. I learned that two pieces of code reading the same text drift apart unless a test holds them together. Now Python and JavaScript hold the same 52 units, and a test fails the moment they differ.</p>
+      </div>
+      <div class="cs-l">
+        <h3>Look at the page as well as the tests.</h3>
+        <p>In October, the first build of the two-column time block threw no error and still dropped the scaling control from <span class="cs-fig">78</span> of my 300 recipes. I learned that tests check what I thought to ask, and the page shows what a cook gets. Now every visible change gets a click-through in the browser before release.</p>
+      </div>
+      <div class="cs-l">
+        <h3>Turn repeated one-off answers into rules.</h3>
+        <p>One cleanup round gave <span class="cs-fig">111</span> answers one line at a time, for lines its rules could not decide. I asked Claude to read the answers together, and lines like &ldquo;1 tsp EACH garlic powder, onion powder, dried oregano&rdquo; turned up five times. The answers had read each one as a choice, when it lists several ingredients sharing one amount. I learned that one-off answers that repeat a shape are a rule waiting to be written. Now the importer splits such a line into one line per ingredient, each with the shared amount.</p>
+      </div>
+      <div class="cs-l">
+        <h3>Rehearse on a copy and keep a way back.</h3>
+        <p>A release runs on a copy of the database first, and a check compares the result with the declaration cell by cell. On release day, I back up the real database the moment the server stops and keep a copy of the result. Before any rollback, I compare the live database with that copy, so a cook&rsquo;s later entries are never lost by accident.</p>
+      </div>
+    </div>
+    <p class="cs-role">I designed the product and directed the engineering. I decided what the app does and how it looks, and I approved every change to my real data before it ran. Claude Code wrote the code from plans I approved, and I set up the release process above.</p>
+  </section>
+  </main>
+
+  <footer class="cs-foot">
+    <p class="cs-frow"><span>Andy Hannah</span><span class="cs-fbar" aria-hidden="true">|</span><span>MS in Data Science, Northeastern University, December 2026</span><span class="cs-fbar" aria-hidden="true">|</span><a href="https://www.linkedin.com/in/andy-hannah/">LinkedIn</a><span class="cs-fbar" aria-hidden="true">|</span><a href="mailto:andyhannah2014@gmail.com">andyhannah2014@gmail.com</a><span class="cs-fbar" aria-hidden="true">|</span><a href="https://github.com/abh5227">GitHub</a></p>
+    <p>The demo above is the app&rsquo;s own front end, built from its source with Vite and unchanged. A script in the page stands in for the server and replays answers the app&rsquo;s own server code gave for the three sample recipes. It keeps the cook log in memory, so a reload clears it. The three recipes and the imported page are originals made for this demo. The photos are stock images, used under their licenses.</p>
+    <p>Built from commit <code>d5caa9c</code> on 25 November 2026. The app&rsquo;s repository is private.</p>
+  </footer>
+</div>
+<script id="cs-slugs" type="application/json">["yogurt-marinated-chicken-with-charred-onions","lemon-olive-oil-cake","a-pot-of-black-beans"]</script>
+<script src="case-study.js"></script>
+</body>
+</html>
