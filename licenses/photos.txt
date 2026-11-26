@@ -1,47 +1,47 @@
 The photos in demo/images/ are stock images, used under their licenses. Each one was resized and
 stored by the app's own photo upload, which keeps no metadata.
 
-demo/images/cooks/759a27af7cbd4cb08200601c769b4e31.jpg
+demo/images/cooks/1b95b3c640514dc8a22f8a9309da165e.jpg
   Yogurt-Marinated Chicken with Charred Onions, the Hero
   Photo by Madhurima Basak, https://unsplash.com/photos/R25pvpErlsI
   Unsplash License, https://unsplash.com/license
 
-demo/images/cooks/b6aec9f0e8af403da630539cae589631.jpg
+demo/images/cooks/c7674850ffbe4911aa0f2a5c8ef38c20.jpg
   Yogurt-Marinated Chicken with Charred Onions
   Photo by Esperanza Doronila, https://unsplash.com/photos/Xns5s92Ipcc
   Unsplash License, https://unsplash.com/license
 
-demo/images/cooks/d2f2dcc700d246689d58b6149cd77137.jpg
+demo/images/cooks/f25bba8451bc4917abc454a8df3acc66.jpg
   Lemon Olive Oil Cake, the Hero
   Photo by Anna Zaro, https://unsplash.com/photos/GOJu7qQz7Lc
   Unsplash License, https://unsplash.com/license
 
-demo/images/cooks/8ef07cfb63d74739a171ca72604fb99e.jpg
+demo/images/cooks/cc89f56b56d74b44b219b3aee0e727dd.jpg
   Lemon Olive Oil Cake
   Photo by enrico bet, https://unsplash.com/photos/V2cL9Y1Pcxs
   Unsplash License, https://unsplash.com/license
 
-demo/images/cooks/efe313c22894421cac0af2491a4b185d.jpg
+demo/images/cooks/b69094573afe400ea1bbabfefb9643f3.jpg
   Lemon Olive Oil Cake
   Photo by Natalie Kryl, https://unsplash.com/photos/Gk-RfWvr6yU
   Unsplash License, https://unsplash.com/license
 
-demo/images/cooks/81d81e7c79f64a4e8c643a4566e17589.jpg
+demo/images/cooks/277b6ca06b6e41fcbaa382117f3955da.jpg
   Lemon Olive Oil Cake
   Photo by Mustafa akın, https://unsplash.com/photos/C5o6xUEfg0E
   Unsplash License, https://unsplash.com/license
 
-demo/images/cooks/a65fdd3a3ff2492e8a6d9d0129af1b53.jpg
+demo/images/cooks/f459ca2119994674bf0af2affe770d13.jpg
   Lemon Olive Oil Cake
   Photo by The Design Lady, https://unsplash.com/photos/0YZe0g5w7yA
   Unsplash License, https://unsplash.com/license
 
-demo/images/cooks/ea6c13722200423986efda2a59ad8287.jpg
+demo/images/cooks/5577af2511ad465caa0b37b5902b4c85.jpg
   A Pot of Black Beans, the Hero
   Photo by Kae Ng, https://unsplash.com/photos/9b_UDAe0XVQ
   Unsplash License, https://unsplash.com/license
 
-demo/images/cooks/97ee4c157fc24becb9b33a0230abca1c.jpg
+demo/images/cooks/2d74cfe5fd3547c9a9924816fe13bf84.jpg
   A Pot of Black Beans
   Photo by Mikey Frost, https://unsplash.com/photos/Rq9eUgGy_eA
   Unsplash License, https://unsplash.com/license
